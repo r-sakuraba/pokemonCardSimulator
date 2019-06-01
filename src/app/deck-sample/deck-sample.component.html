@@ -1,0 +1,31 @@
+<h1>デッキサンプル</h1>
+
+<h3>デッキ枚数：{{ deck.length }}枚</h3>
+
+<button (click)="draw()">ドロー</button>
+<button (click)="shuffle()">シャッフル</button>
+
+<h3>手札：</h3>
+<button *ngIf="hand.length" (click)="handToDeck()">すべて山札</button>
+<div [ngStyle]="{ display: 'flex' }">
+  <ng-container *ngFor="let h of hand">
+    <app-card [card]="h" [ngStyle]="{ width: '100' }"></app-card>
+    <p>&nbsp;</p>
+  </ng-container>
+</div>
+<h3>上からn枚：</h3>
+<div [ngStyle]="{ display: 'flex' }">
+  <input type="number" [(ngModel)]="inputTopN" />
+  <button (click)="onClickShowTopN()">表示</button>
+  &nbsp;
+  <button (click)="onClickShowDeck()">山札すべて表示</button>
+</div>
+<div [ngStyle]="{ display: 'flex', overflow: 'visible scroll' }">
+  <ng-container *ngFor="let s of stash; index as i">
+    <app-card [card]="s"></app-card>
+    <button (click)="stashToHand(i)">手札</button>
+    <button (click)="stashToDeckTop(i)">山札</button>
+    <p>,&nbsp;</p>
+  </ng-container>
+</div>
+<button *ngIf="stash.length" (click)="stashToDeck()">すべて山札</button>
