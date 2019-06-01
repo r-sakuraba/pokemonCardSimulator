@@ -13,7 +13,7 @@ const shuffleAlgo = ([...arr]) => {
 @Component({
   selector: 'app-deck-sample',
   templateUrl: './deck-sample.component.html',
-  styleUrls: ['./deck-sample.component.css'],
+  styleUrls: ['./deck-sample.component.scss'],
 })
 export class DeckSampleComponent implements OnInit {
   deck: Card[];
