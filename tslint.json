@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "prettier": [
+      true, 
+      {
+        "singleQuote": true,
+        "semi": true,
+        "trailingComma": "es5"
+      }
+    ],
+    "member-access": false,
+    "no-empty": false,
+    "object-literal-sort-keys":false
+  },
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ]
+}
