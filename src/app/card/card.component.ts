@@ -36,5 +36,6 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     this.card.showFront = this.card.Id % 2 === 0;
+    this.card.showFront = true;
   }
 }

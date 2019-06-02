@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from '../card/card.component';
+import { HttpClient } from '@angular/common/http';
 
 const shuffleAlgo = ([...arr]) => {
   let m = arr.length;
@@ -22,7 +23,7 @@ export class DeckSampleComponent implements OnInit {
   topN = 0;
   inputTopN;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   /**
    * 初期化処理
@@ -36,6 +37,18 @@ export class DeckSampleComponent implements OnInit {
           'https://www.pokemon-card.com/assets/images/card_images/large/SM4p/035679_T_RIRIE.jpg',
       } as Card;
     });
+    this.http.get('/assets/deck/deck.dat').subscribe((data: {img: string, num: number}[]) => {
+      let index = 0;
+      console.log(data);
+      data.forEach( _ => {
+        for(let j = 0; j < _.num; j++){
+          this.deck[index].frontImg = _.img;
+          index++;
+        }
+      });
+      console.log(this.deck);
+      
+    })
     this.shuffle();
   }
 

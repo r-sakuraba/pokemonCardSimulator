@@ -6,6 +6,7 @@ import { DeckSampleComponent } from './deck-sample/deck-sample.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: 'deck-sample', component: DeckSampleComponent },
@@ -13,7 +14,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AppComponent, DeckSampleComponent, CardComponent],
-  imports: [BrowserModule, RouterModule.forRoot(routes), FormsModule],
+  imports: [BrowserModule, RouterModule.forRoot(routes), FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
