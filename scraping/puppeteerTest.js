@@ -23,7 +23,11 @@ const fs = require("fs");
   console.log(summary)
 
   try {
-    fs.writeFileSync("./src/assets/deck/deck.dat", JSON.stringify(summary, null, 1));
+    const path = "./src/assets/deck";
+    if (!fs.existsSync(path)) {
+        fs.mkdirSync(path);
+    }
+    fs.writeFileSync(path + "/deck.dat", JSON.stringify(summary, null, 1));
     console.log('write end');
   } catch (error) {
     console.log(e);
