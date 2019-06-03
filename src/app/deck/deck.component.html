@@ -1,0 +1,11 @@
+<app-card *ngIf="service.deck.length" [card]="deckTop"></app-card>
+<div *ngIf="!service.deck.length"></div>
+<button (click)="draw()">ドロー</button>
+<button (click)="shuffle()">シャッフル</button>
+<div [ngStyle]="{ display: 'flex' }">
+  <p>上からn枚：</p>
+  <input type="number" [(ngModel)]="inputTopN" />
+  <button (click)="onClickShowTopN()">表示</button>
+  &nbsp;
+  <button (click)="onClickShowDeck()">山札すべて表示</button>
+</div>

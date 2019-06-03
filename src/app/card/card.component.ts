@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 export interface Card {
   Id: number;
   showFront: boolean;
-  frontImg: string;
+  frontImg?: string;
   backImg?: string;
 }
 

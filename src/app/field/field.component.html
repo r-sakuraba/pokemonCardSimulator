@@ -1,0 +1,12 @@
+<app-deck (click)="onClick(place.deck);"></app-deck>
+<app-battle (click)="onClick(place.battle);"></app-battle>
+<app-bench (click)="onClick(place.bench);"></app-bench>
+<app-trash (click)="onClick(place.trash);"></app-trash>
+<app-side (click)="onClick(place.side);"></app-side>
+<app-hand (click)="onClick(place.hand);" (onClickHand)="onClick(place.hand, $event);"></app-hand>
+<app-stadium (click)="onClick(place.stadium);"></app-stadium>
+<app-use (click)="onClick(place.use);"></app-use>
+<app-lost (click)="onClick(place.lost);"></app-lost>
+<app-gx></app-gx>
+<app-count></app-count>
+<app-stash (click)="onClick(place.stash);"></app-stash>

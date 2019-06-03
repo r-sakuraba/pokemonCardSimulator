@@ -1,0 +1,8 @@
+<h3>手札：</h3>
+<div [ngStyle]="{ display: 'flex' }">
+  <ng-container *ngFor="let h of service.hand;index as i">
+    <app-card (click)="onClick($event, i);"[card]="h"></app-card>
+    <p>&nbsp;</p>
+  </ng-container>
+</div>
+<button *ngIf="service.hand.length" (click)="handToDeck()">すべて山札</button>

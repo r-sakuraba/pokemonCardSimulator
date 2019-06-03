@@ -1,0 +1,7 @@
+<h3>ロスト：</h3>
+<div [ngStyle]="{ display: 'flex' }">
+  <ng-container *ngFor="let l of service.lost">
+    <app-card [card]="l"></app-card>
+    <p>&nbsp;</p>
+  </ng-container>
+</div>

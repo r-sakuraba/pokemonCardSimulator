@@ -1,0 +1,7 @@
+<h3>バトル場：</h3>
+<div [ngStyle]="{ display: 'flex' }">
+  <ng-container *ngFor="let b of service.battle">
+    <app-card [card]="b"></app-card>
+    <p>&nbsp;</p>
+  </ng-container>
+</div>
