@@ -1,7 +1,6 @@
-<h3>バトル場：</h3>
-<div [ngStyle]="{ display: 'flex' }">
+<h3 style="display: block">バトル場：</h3>
+<div>
   <ng-container *ngFor="let b of service.battle">
-    <app-card [card]="b"></app-card>
-    <p>&nbsp;</p>
+    <app-card class="battle_card" [card]="b"></app-card>
   </ng-container>
 </div>

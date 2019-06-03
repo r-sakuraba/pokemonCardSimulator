@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+.field {
+  position: relative;
+  background: url(assets/image/playMat.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 945px;
+  height: auto;
+}
+
+app-field {
+  display: block;
+  position: relative;
+}
+
+app-deck {
+  position: absolute;
+  top: 40px;
+  right: 35px;
+  width: 90px;
+}
+
+app-battle {
+  position: absolute;
+  left: 45.3%;
+  top: -8%;
+}
