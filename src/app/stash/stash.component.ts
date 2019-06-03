@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PokecaServiceService } from '../pokeca-service.service';
 
 @Component({
   selector: 'app-stash',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StashComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private service: PokecaServiceService) { }
+  
   ngOnInit() {
   }
 

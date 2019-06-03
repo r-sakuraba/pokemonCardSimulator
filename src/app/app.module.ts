@@ -23,6 +23,7 @@ import { CountComponent } from './count/count.component';
 
 const routes: Routes = [
   { path: 'deck-sample', component: DeckSampleComponent },
+  { path: 'field', component: FieldComponent },
 ];
 
 @NgModule({

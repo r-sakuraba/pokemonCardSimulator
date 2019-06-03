@@ -1,3 +1,7 @@
-<p>
-  stadium works!
-</p>
+<h3>スタジアム：</h3>
+<div [ngStyle]="{ display: 'flex' }">
+  <ng-container *ngFor="let s of service.stadium">
+    <app-card [card]="s"></app-card>
+    <p>&nbsp;</p>
+  </ng-container>
+</div>

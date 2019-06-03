@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { PokecaServiceService } from '../pokeca-service.service';
 
 @Component({
   selector: 'app-hand',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HandComponent implements OnInit {
 
-  constructor() { }
+  @Output() onClickHand = new EventEmitter<number>();
+
+  constructor(private service: PokecaServiceService) { }
 
   ngOnInit() {
+  }
+
+  onClick(e: Event, index: number) {
+    e.stopPropagation();
+    this.onClickHand.emit(index);
   }
 
 }
