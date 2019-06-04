@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { PokecaServiceService } from '../pokeca-service.service';
+import { Place, SelectedCard } from '../field/field.component';
 
 @Component({
   selector: 'app-use',
@@ -8,7 +9,12 @@ import { PokecaServiceService } from '../pokeca-service.service';
 })
 export class UseComponent implements OnInit {
 
+  @Input() selectedCard: SelectedCard;
   @Output() onClickUse = new EventEmitter<number>();
+
+  get isSelectedPlace() {
+    return this.selectedCard.place === Place.use;
+  }
 
   constructor(private service: PokecaServiceService) { }
 
@@ -19,4 +25,5 @@ export class UseComponent implements OnInit {
     e.stopPropagation();
     this.onClickUse.emit(index);
   }
+
 }

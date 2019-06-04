@@ -1,7 +1,11 @@
 <!-- バトル場 start -->
 <div class="battle_field">
   <ng-container *ngFor="let b of service.battle;index as i">
-    <app-card class="battle_card" (click)="onClick($event, i);" [card]="b"></app-card>
+    <app-card class="battle_card"
+      [card]="b"
+      [selected]="isSelectedPlace && (this.selectedCard.index === i || !this.selectedCard.index)"
+      (click)="onClick($event, i);"
+    ></app-card>
   </ng-container>
 </div>
 <!-- バトル場 end -->

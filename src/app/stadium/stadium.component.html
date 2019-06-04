@@ -1,7 +1,11 @@
 <!-- スタジアム start -->
 <div class="studium_field">
   <ng-container *ngFor="let s of service.stadium">
-    <app-card [card]="s"></app-card>
+    <app-card
+      [card]="s"
+      [selected]="isSelectedPlace && (this.selectedCard.index === i || !this.selectedCard.index)"
+      (click)="onClick($event, i);"
+    ></app-card>
     <p>&nbsp;</p>
   </ng-container>
 </div>

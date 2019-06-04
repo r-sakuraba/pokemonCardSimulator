@@ -1,7 +1,11 @@
 <h3>確認：</h3>
 <div [ngStyle]="{ display: 'flex' }">
   <ng-container *ngFor="let s of service.stash;index as i">
-    <app-card (click)="onClick($event, i);" [card]="s"></app-card>
+    <app-card
+      [card]="s"
+      [selected]="isSelectedPlace && (this.selectedCard.index === i || !this.selectedCard.index)"
+      (click)="onClick($event, i);"
+    ></app-card>
     <p>&nbsp;</p>
   </ng-container>
 </div>

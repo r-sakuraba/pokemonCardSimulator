@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Card } from '../card/card.component';
 import { PokecaServiceService } from '../pokeca-service.service';
+import { SelectedCard, Place } from '../field/field.component';
 
 @Component({
   selector: 'app-deck',
@@ -9,10 +10,16 @@ import { PokecaServiceService } from '../pokeca-service.service';
 })
 export class DeckComponent implements OnInit {
 
+  @Input() selectedCard: SelectedCard;
+
   inputTopN: number;
 
   get deckTop(): Card {
     return Object.assign({}, this.service.deck[0], {showFront: false});
+  }
+
+  get isSelectedPlace() {
+    return this.selectedCard.place === Place.deck;
   }
 
   constructor(private service: PokecaServiceService) { }

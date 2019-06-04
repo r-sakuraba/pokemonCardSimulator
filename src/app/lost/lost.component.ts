@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { PokecaServiceService } from '../pokeca-service.service';
+import { SelectedCard, Place } from '../field/field.component';
 
 @Component({
   selector: 'app-lost',
@@ -8,7 +9,12 @@ import { PokecaServiceService } from '../pokeca-service.service';
 })
 export class LostComponent implements OnInit {
 
+  @Input() selectedCard: SelectedCard;
   @Output() onClickLost = new EventEmitter<number>();
+
+  get isSelectedPlace() {
+    return this.selectedCard.place === Place.lost;
+  }
 
   constructor(private service: PokecaServiceService) { }
 

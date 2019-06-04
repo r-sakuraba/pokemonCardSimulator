@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { PokecaServiceService } from '../pokeca-service.service';
+import { SelectedCard, Place } from '../field/field.component';
 
 @Component({
   selector: 'app-hand',
@@ -7,8 +8,12 @@ import { PokecaServiceService } from '../pokeca-service.service';
   styleUrls: ['./hand.component.scss']
 })
 export class HandComponent implements OnInit {
-
+  @Input() selectedCard: SelectedCard;
   @Output() onClickHand = new EventEmitter<number>();
+
+  get isSelectedPlace() {
+    return this.selectedCard.place === Place.hand;
+  }
 
   constructor(private service: PokecaServiceService) { }
 
@@ -19,5 +24,4 @@ export class HandComponent implements OnInit {
     e.stopPropagation();
     this.onClickHand.emit(index);
   }
-
 }
