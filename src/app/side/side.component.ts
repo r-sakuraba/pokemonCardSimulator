@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PokecaServiceService } from '../pokeca-service.service';
 
 @Component({
@@ -8,9 +8,15 @@ import { PokecaServiceService } from '../pokeca-service.service';
 })
 export class SideComponent implements OnInit {
 
+  @Output() onClickSide = new EventEmitter<number>();
+
   constructor(private service: PokecaServiceService) { }
 
   ngOnInit() {
   }
 
+  onClick(e: Event, index: number) {
+    e.stopPropagation();
+    this.onClickSide.emit(index);
+  }
 }

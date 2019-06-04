@@ -1,7 +1,7 @@
 <!-- サイド start -->
 <div class="side_field">
-  <ng-container *ngFor="let s of service.side">
-    <app-card [card]="s"></app-card>
+  <ng-container *ngFor="let s of service.side;index as i">
+    <app-card (click)="onClick($event, i);" [card]="s"></app-card>
     <p>&nbsp;</p>
   </ng-container>
 </div>

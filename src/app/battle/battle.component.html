@@ -1,7 +1,7 @@
 <!-- バトル場 start -->
 <div class="battle_field">
-  <ng-container *ngFor="let b of service.battle">
-    <app-card class="battle_card" [card]="b"></app-card>
+  <ng-container *ngFor="let b of service.battle;index as i">
+    <app-card class="battle_card" (click)="onClick($event, i);" [card]="b"></app-card>
   </ng-container>
 </div>
 <!-- バトル場 end -->
