@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PokecaServiceService } from '../pokeca-service.service';
 import { SelectedCard, Place } from '../field/field.component';
 
@@ -10,6 +10,7 @@ import { SelectedCard, Place } from '../field/field.component';
 export class StadiumComponent implements OnInit {
 
   @Input() selectedCard: SelectedCard;
+  @Output() onClickStadium = new EventEmitter<number>();
 
   get isSelectedPlace() {
     return this.selectedCard.place === Place.stadium;
@@ -20,4 +21,8 @@ export class StadiumComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClick(e: Event, index: number) {
+    e.stopPropagation();
+    this.onClickStadium.emit(index);
+  }
 }

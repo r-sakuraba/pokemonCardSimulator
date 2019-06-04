@@ -3,7 +3,7 @@
   <ng-container *ngFor="let t of service.trash;index as i">
     <app-card
       [card]="t"
-      [selected]="isSelectedPlace && (this.selectedCard.index === i || !this.selectedCard.index)"
+      [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
       (click)="onClick($event, i);"
     ></app-card>
   </ng-container>

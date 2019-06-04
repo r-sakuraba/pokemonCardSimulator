@@ -49,7 +49,11 @@ export class FieldComponent implements OnInit {
         break;
       default:
         console.log(this.selectedCard, ' to ', clickPlace);
-        this.service.moveAToB(this.selectedCard.place, this.selectedCard.index,  clickPlace);
+        if (this.selectedCard.index === undefined) {
+          this.service.moveAToB(this.selectedCard.place, clickPlace);
+        } else {
+          this.service.moveOneAToB(this.selectedCard.place, this.selectedCard.index,  clickPlace);
+        }
         this.selectedCard = {};
     }
   }
