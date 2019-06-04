@@ -1,4 +1,11 @@
 img{
     max-width: 90px;
     height: auto;
- }
+}
+.card {
+  width: 5%;
+  height: auto;
+  &.is-active {
+    border: 3px solid blue;
+  }
+}

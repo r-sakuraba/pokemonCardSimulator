@@ -1,7 +1,8 @@
-<h3>ロスト：</h3>
-<div [ngStyle]="{ display: 'flex' }">
+<!-- ロスト start -->
+<div class="lost_field">
   <ng-container *ngFor="let l of service.lost;index as i">
     <app-card (click)="onClick($event, i);" [card]="l"></app-card>
     <p>&nbsp;</p>
   </ng-container>
 </div>
+<!-- ロスト end -->

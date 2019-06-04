@@ -1,8 +1,9 @@
 <app-card *ngIf="service.deck.length" [card]="deckTop"></app-card>
 <div *ngIf="!service.deck.length"></div>
-<button (click)="draw()">ドロー</button>
-<button (click)="shuffle()">シャッフル</button>
-<div [ngStyle]="{ display: 'flex' }">
+<button class="deck_play" (click)="draw()">ドロー</button>
+<button class="deck_play" (click)="shuffle()">シャッフル</button>
+<button class="deck_play" (click)="search()">サーチ</button> <!-- クリック時に 検索用別ウィンドウを開く想定 -->
+<div class="deck_search" style="display: none;">
   <p>上からn枚：</p>
   <input type="number" [(ngModel)]="inputTopN" />
   <button (click)="onClickShowTopN()">表示</button>

@@ -1,1 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+}
+
+.field {
+  margin: 15px 0 0;
+  position: relative;
+  background: url(assets/image/playMat.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1054px;
+  height: 547px;
+}
+
+app-field {
+  display: block;
+  position: relative;
+  width: 1054px;
+  height: 547px;
+}
+
+app-deck {
+  position: absolute;
+  top: 12%;
+  right: 4%;
+  width: 90px;
+}
+
+app-battle {
+  position: absolute;
+  top: 7%;
+  left: 46%;
+}
+
+app-trash {
+  position: absolute;
+  top: 46%;
+  right: 4%;
+  width: 90px;
+}
+
+app-hand {
+  position: absolute;
+  margin: 5px;
+  top: 95%;
+  left: 0;
+  width: 99%;
+}
+
+app-bench {
+  position: absolute;
+  top: 62%;
+  left: 19%;
+  width: 62%;
+}
+
+app-stadium {
+  position: absolute;
+  top: 5%;
+  left: 65%;
+  width: 90px;
+}
+
+app-lost {
+  position: absolute;
+  top: 4%;
+  left: 20%;
+  width: 90px;
+  transform: rotate(90deg);
+}
+
+app-side {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  width: 140px;
+}
+
+app-use {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  width: 90px;
+}

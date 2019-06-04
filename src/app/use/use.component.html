@@ -1,7 +1,8 @@
-<h3>使用：</h3>
-<div [ngStyle]="{ display: 'flex' }">
+<!-- 使用 start -->
+<div class="use_field">
   <ng-container *ngFor="let u of service.use;index as i">
     <app-card (click)="onClick($event, i);" [card]="u"></app-card>
     <p>&nbsp;</p>
   </ng-container>
 </div>
+<!-- 使用 end -->
