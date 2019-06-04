@@ -1,7 +1,7 @@
-<h3>墓地：</h3>
-<div [ngStyle]="{ display: 'flex' }">
+<!-- トラッシュ start -->
+<div class="trash_field">
   <ng-container *ngFor="let t of service.trash">
     <app-card [card]="t"></app-card>
-    <p>&nbsp;</p>
   </ng-container>
 </div>
+<!-- トラッシュ end -->
