@@ -103,7 +103,13 @@ export class PokecaServiceService {
     }
   }
 
-  moveAToB(placeA: Place, aIndex: number,  placeB: Place) {
+  moveAToB(placeA: Place,  placeB: Place) {
+    const a = this.PlaceToVariable(placeA);
+    const b = this.PlaceToVariable(placeB);
+    b.push(...a.splice(0, a.length));
+  }
+
+  moveOneAToB(placeA: Place, aIndex: number,  placeB: Place) {
     const a = this.PlaceToVariable(placeA);
     const b = this.PlaceToVariable(placeB);
     b.push(...a.splice(aIndex, 1));
