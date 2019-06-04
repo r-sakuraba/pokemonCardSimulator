@@ -24,7 +24,7 @@ export enum Place {
 export class FieldComponent implements OnInit {
   place: typeof Place = Place;
   selectedCard: {
-    index?: number, 
+    index?: number,
     place?: Place
   } = {};
 
@@ -47,7 +47,7 @@ export class FieldComponent implements OnInit {
         break;
       default:
         console.log(this.selectedCard, ' to ', clickPlace);
-        this.service.moveAToB(this.selectedCard.place, clickPlace, 1);
+        this.service.moveAToB(this.selectedCard.place, this.selectedCard.index,  clickPlace);
         this.selectedCard = {};
     }
   }

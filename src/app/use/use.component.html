@@ -1,7 +1,7 @@
 <h3>使用：</h3>
 <div [ngStyle]="{ display: 'flex' }">
-  <ng-container *ngFor="let u of service.use">
-    <app-card [card]="u"></app-card>
+  <ng-container *ngFor="let u of service.use;index as i">
+    <app-card (click)="onClick($event, i);" [card]="u"></app-card>
     <p>&nbsp;</p>
   </ng-container>
 </div>

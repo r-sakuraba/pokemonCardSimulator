@@ -1,7 +1,7 @@
 <h3>墓地：</h3>
 <div [ngStyle]="{ display: 'flex' }">
-  <ng-container *ngFor="let t of service.trash">
-    <app-card [card]="t"></app-card>
+  <ng-container *ngFor="let t of service.trash;index as i">
+    <app-card (click)="onClick($event, i);" [card]="t"></app-card>
     <p>&nbsp;</p>
   </ng-container>
 </div>
