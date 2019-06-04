@@ -1,7 +1,11 @@
 <!-- 手札 start -->
 <div class="hand_field">
   <ng-container *ngFor="let h of service.hand;index as i">
-    <app-card (click)="onClick($event, i);"[card]="h" class="hand_card"></app-card>
+    <app-card class="hand_card"
+      [card]="h"
+      [selected]="isSelectedPlace && (this.selectedCard.index === i || !this.selectedCard.index)"
+      (click)="onClick($event, i);"
+    ></app-card>
   </ng-container>
 </div>
 <button *ngIf="service.hand.length" (click)="handToDeck()">すべて山札</button>

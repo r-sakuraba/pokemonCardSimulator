@@ -1,7 +1,11 @@
 <!-- 使用 start -->
 <div class="use_field">
   <ng-container *ngFor="let u of service.use;index as i">
-    <app-card (click)="onClick($event, i);" [card]="u"></app-card>
+    <app-card
+      [card]="u"
+      [selected]="isSelectedPlace && (this.selectedCard.index === i || !this.selectedCard.index)"
+      (click)="onClick($event, i);"
+    ></app-card>
     <p>&nbsp;</p>
   </ng-container>
 </div>

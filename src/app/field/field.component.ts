@@ -16,6 +16,11 @@ export enum Place {
   stash = 'stash',
 }
 
+export class SelectedCard {
+  index?: number;
+  place?: Place;
+}
+
 @Component({
   selector: 'app-field',
   templateUrl: './field.component.html',
@@ -23,10 +28,7 @@ export enum Place {
 })
 export class FieldComponent implements OnInit {
   place: typeof Place = Place;
-  selectedCard: {
-    index?: number,
-    place?: Place
-  } = {};
+  selectedCard: SelectedCard = {};
 
   constructor(private service: PokecaServiceService) {}
 

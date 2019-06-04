@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { PokecaServiceService } from '../pokeca-service.service';
+import { SelectedCard, Place } from '../field/field.component';
 
 @Component({
   selector: 'app-trash',
@@ -8,7 +9,12 @@ import { PokecaServiceService } from '../pokeca-service.service';
 })
 export class TrashComponent implements OnInit {
 
+  @Input() selectedCard: SelectedCard;
   @Output() onClickTrash = new EventEmitter<number>();
+
+  get isSelectedPlace() {
+    return this.selectedCard.place === Place.trash;
+  }
 
   constructor(private service: PokecaServiceService) { }
 
@@ -19,4 +25,5 @@ export class TrashComponent implements OnInit {
     e.stopPropagation();
     this.onClickTrash.emit(index);
   }
+
 }

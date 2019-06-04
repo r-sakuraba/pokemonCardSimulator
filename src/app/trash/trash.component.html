@@ -1,7 +1,11 @@
 <!-- トラッシュ start -->
 <div class="trash_field">
   <ng-container *ngFor="let t of service.trash;index as i">
-    <app-card (click)="onClick($event, i);" [card]="t"></app-card>
+    <app-card
+      [card]="t"
+      [selected]="isSelectedPlace && (this.selectedCard.index === i || !this.selectedCard.index)"
+      (click)="onClick($event, i);"
+    ></app-card>
   </ng-container>
 </div>
 <!-- トラッシュ end -->

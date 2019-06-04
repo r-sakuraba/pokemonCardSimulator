@@ -30,7 +30,9 @@ interface TrainersCard extends Card {}
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+
   @Input() card: Card;
+  @Input() selected: boolean;
 
   constructor() {}
 

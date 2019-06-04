@@ -1,4 +1,4 @@
-<div [ngSwitch]="card.showFront" class="card_area">
+<div [ngSwitch]="card.showFront" class="card_area" [class.is-active]="selected">
   <img *ngSwitchCase="true" [src]="card.frontImg" />
   <ng-container *ngSwitchCase="false">
     <img *ngIf="card.backImg" [src]="card.backImg" />
