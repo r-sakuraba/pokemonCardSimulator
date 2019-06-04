@@ -1,7 +1,7 @@
-<span [ngSwitch]="card.showFront">
+<div [ngSwitch]="card.showFront" class="card_area">
   <img *ngSwitchCase="true" [src]="card.frontImg" />
   <ng-container *ngSwitchCase="false">
     <img *ngIf="card.backImg" [src]="card.backImg" />
     <img *ngIf="!card.backImg" src="/assets/image/backImg.jpg" />
   </ng-container>
-</span>
+</div>
