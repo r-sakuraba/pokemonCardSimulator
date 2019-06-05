@@ -1,0 +1,14 @@
+.count_feild {
+  margin: 0;
+  padding: 10px;
+  display: flex;
+  border: 2px solid red;
+  width: 111px;
+  height: 30px;
+}
+
+.count_list {
+  .count_list-item {
+    font-size: 11px;
+  }
+}

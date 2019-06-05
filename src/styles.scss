@@ -4,6 +4,12 @@ body {
   margin: 0;
 }
 
+ol, ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .field {
   margin: 15px 0 0;
   position: relative;
@@ -80,4 +86,20 @@ app-use {
   position: absolute;
   top: 25%;
   left: 30%;
+}
+
+app-gx {
+  background: url(assets/image/gx_marker.jpg);
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 34%;
+  width: 67px;
+  height: 43px;
+}
+
+app-count {
+  position: absolute;
+  top: -2%;
+  right: 2%;
 }
