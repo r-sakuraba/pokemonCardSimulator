@@ -1,7 +1,13 @@
 .lost_field {
   margin: 0;
-  display: block;
-  background-color: red;
-  width: 90px;
-  height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid red;
+  width: 95px;
+  height: 130px;
+}
+
+.lost_card {
+  position: absolute;
 }
