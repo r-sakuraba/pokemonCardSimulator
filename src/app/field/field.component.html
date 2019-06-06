@@ -1,6 +1,6 @@
 <app-deck [selectedCard]="selectedCard" (click)="onClick(place.deck, 0);"></app-deck>
 <app-battle [selectedCard]="selectedCard" (click)="onClick(place.battle);" (onClickBattle)="onClick(place.battle, $event);"></app-battle>
-<app-bench (click)="onClick(place.bench);"></app-bench>
+<app-bench-field [selectedCard]="selectedCard" (click)="onClick(place.bench);" (onClickBench)="onClick(place.bench, $event[1], $event[0]);"></app-bench-field>
 <app-trash [selectedCard]="selectedCard" (click)="onClick(place.trash);" (onClickTrash)="onClick(place.trash, $event);"></app-trash>
 <app-side [selectedCard]="selectedCard" (click)="onClick(place.side);" (onClickSide)="onClick(place.side, $event);"></app-side>
 <app-hand [selectedCard]="selectedCard" (click)="onClick(place.hand);" (onClickHand)="onClick(place.hand, $event);"></app-hand>

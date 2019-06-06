@@ -20,6 +20,7 @@ import { TrashComponent } from './trash/trash.component';
 import { UseComponent } from './use/use.component';
 import { StashComponent } from './stash/stash.component';
 import { CountComponent } from './count/count.component';
+import { BenchFieldComponent } from './bench-field/bench-field.component';
 
 const routes: Routes = [
   { path: 'deck-sample', component: DeckSampleComponent },
@@ -27,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, DeckSampleComponent, CardComponent, FieldComponent, DeckComponent, HandComponent, StadiumComponent, BenchComponent, BattleComponent, SideComponent, GxComponent, LostComponent, TrashComponent, UseComponent, StashComponent, CountComponent],
+  declarations: [AppComponent, DeckSampleComponent, CardComponent, FieldComponent, DeckComponent, HandComponent, StadiumComponent, BenchComponent, BattleComponent, SideComponent, GxComponent, LostComponent, TrashComponent, UseComponent, StashComponent, CountComponent, BenchFieldComponent],
   imports: [BrowserModule, RouterModule.forRoot(routes), FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

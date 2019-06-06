@@ -19,6 +19,7 @@ export enum Place {
 export class SelectedCard {
   index?: number;
   place?: Place;
+  benchIndex?: number;
 }
 
 @Component({
@@ -36,8 +37,8 @@ export class FieldComponent implements OnInit {
     this.service.generateDeck();
   }
 
-  onClick(clickPlace: Place, index?: number) {
-    console.log(clickPlace, index);
+  onClick(clickPlace: Place, index?: number, benchIndex?: number) {
+    console.log(clickPlace, index, benchIndex);
     switch (this.selectedCard.place) {
       case clickPlace:
         console.log('select cancel');
@@ -45,14 +46,14 @@ export class FieldComponent implements OnInit {
         break;
       case undefined:
         console.log(clickPlace, ' select');
-        this.selectedCard = { place: clickPlace, index };
+        this.selectedCard = { place: clickPlace, index, benchIndex };
         break;
       default:
         console.log(this.selectedCard, ' to ', clickPlace);
         if (this.selectedCard.index === undefined) {
-          this.service.moveAToB(this.selectedCard.place, clickPlace);
+          this.service.moveAToB(this.selectedCard.place, clickPlace, this.selectedCard.benchIndex, benchIndex);
         } else {
-          this.service.moveOneAToB(this.selectedCard.place, this.selectedCard.index,  clickPlace);
+          this.service.moveOneAToB(this.selectedCard.place, this.selectedCard.index,  clickPlace, this.selectedCard.benchIndex, benchIndex);
         }
         this.selectedCard = {};
     }
