@@ -58,4 +58,10 @@ export class FieldComponent implements OnInit {
         this.selectedCard = {};
     }
   }
+
+  onClickGx() {
+    this.service.gx = !this.service.gx;
+  }
+
+
 }
