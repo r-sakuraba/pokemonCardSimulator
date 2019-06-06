@@ -1,3 +1,10 @@
+app-bench {
+  margin-left: 5px;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
 .bench_field {
   margin: 0;
   display: flex;

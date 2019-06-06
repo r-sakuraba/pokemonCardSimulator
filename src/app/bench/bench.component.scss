@@ -1,9 +1,6 @@
 .bench_card {
   border: 2px solid blue;
-  width: 130px;
+  width: 120px;
   height: 170px;
   margin-left: 5px;
-  &:first-child {
-    margin-left: 0;
-  }
 }
