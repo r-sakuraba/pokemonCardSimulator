@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Card } from '../card/card.component';
 
 @Component({
   selector: 'app-bench',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BenchComponent implements OnInit {
 
+  @Input() bench: Card[];
   constructor() { }
 
   ngOnInit() {

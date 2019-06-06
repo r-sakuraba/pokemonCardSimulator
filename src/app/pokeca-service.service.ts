@@ -19,7 +19,7 @@ export class PokecaServiceService {
 
   deck: Card[] = [];
   battle: Card[] = [];
-  bench: Card[][] = [[]];
+  bench: Card[][] = [[], [], [], [], []];
   trash: Card[] = [];
   side: Card[] = [];
   hand: Card[] = [];
