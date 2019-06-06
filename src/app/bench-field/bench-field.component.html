@@ -1,3 +1,9 @@
 <div class="bench_field">
-  <app-bench *ngFor="let bench of service.bench" ></app-bench>
+  <app-bench *ngFor="let bench of service.bench;index as i"
+    (click)="onClickBenchIndexAll($event, i);"
+    [bench]="bench"
+    [benchIndex]="i"
+    [selectedCard]="selectedCard"
+    (onClickBench)="clickBenchEvent(i, $event);"
+  ></app-bench>
 </div>

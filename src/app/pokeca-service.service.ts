@@ -78,14 +78,14 @@ export class PokecaServiceService {
     this.stash = this.deck.splice(0, num);
   }
 
-  PlaceToVariable(place: Place) {
+  PlaceToVariable(place: Place, benchIndex?: number) {
     switch(place) {
       case Place.deck:
         return this.deck;
       case Place.battle:
         return this.battle;
-      // case Place.bench:
-      //   return this.bench;
+      case Place.bench:
+        return this.bench[benchIndex];
       case Place.trash:
         return this.trash;
       case Place.side:
@@ -103,15 +103,15 @@ export class PokecaServiceService {
     }
   }
 
-  moveAToB(placeA: Place,  placeB: Place) {
-    const a = this.PlaceToVariable(placeA);
-    const b = this.PlaceToVariable(placeB);
+  moveAToB(placeA: Place, placeB: Place, aBenchIndex?: number, bBenchIndex?: number) {
+    const a = this.PlaceToVariable(placeA, aBenchIndex);
+    const b = this.PlaceToVariable(placeB, bBenchIndex);
     b.push(...a.splice(0, a.length));
   }
 
-  moveOneAToB(placeA: Place, aIndex: number,  placeB: Place) {
-    const a = this.PlaceToVariable(placeA);
-    const b = this.PlaceToVariable(placeB);
+  moveOneAToB(placeA: Place, aIndex: number,  placeB: Place, aBenchIndex?: number, bBenchIndex?: number) {
+    const a = this.PlaceToVariable(placeA, aBenchIndex);
+    const b = this.PlaceToVariable(placeB, bBenchIndex);
     b.push(...a.splice(aIndex, 1));
   }
   //--------------

@@ -1,5 +1,11 @@
 <!-- ベンチ start -->
 <div class="bench_card">
-  ここにカードを入れる。
+  <ng-container *ngFor="let b of bench;index as i">
+      <app-card
+        [card]="b"
+        [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
+        (click)="onClick($event, i);"
+      ></app-card>
+    </ng-container>
 </div>
 <!-- ベンチ end -->

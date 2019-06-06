@@ -13,8 +13,14 @@ export class BenchFieldComponent implements OnInit {
 
   constructor(private service: PokecaServiceService) {}
 
-  ngOnInit() {
+  ngOnInit() { }
 
+  onClickBenchIndexAll(e: Event, benchIndex: number) {
+    e.stopPropagation();
+    this.onClickBench.emit([benchIndex, undefined]);
   }
 
+  clickBenchEvent(benchIndex: number, index: number) {
+    this.onClickBench.emit([benchIndex, index]);
+  }
 }
