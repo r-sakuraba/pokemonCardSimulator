@@ -1,12 +1,11 @@
 <!-- サイド start -->
 <div class="side_field">
   <ng-container *ngFor="let s of service.side;index as i">
-    <app-card
+    <app-card class="side_card"
       [card]="s"
       [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
       (click)="onClick($event, i);"
     ></app-card>
-    <p>&nbsp;</p>
   </ng-container>
 </div>
 <!-- サイド end -->

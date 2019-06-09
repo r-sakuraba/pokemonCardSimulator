@@ -1,0 +1,89 @@
+.field {
+  margin: 15px 0 0;
+  position: relative;
+  background: url(assets/image/playMat.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1054px;
+  height: 547px;
+}
+
+app-field {
+  display: block;
+  position: relative;
+  width: 1054px;
+  height: 547px;
+}
+
+app-deck {
+  position: absolute;
+  top: 12%;
+  right: 4%;
+  width: 90px;
+}
+
+app-battle {
+  position: absolute;
+  top: 2%;
+  left: 44%;
+}
+
+app-trash {
+  position: absolute;
+  top: 42%;
+  right: 6%;
+  width: 90px;
+}
+
+app-hand {
+  position: absolute;
+  margin: 5px;
+  top: 95%;
+  left: 0;
+  width: 99%;
+}
+
+app-bench-field {
+  position: absolute;
+  top: 56%;
+  left: 18%;
+  width: 63%;
+}
+
+app-stadium {
+  position: absolute;
+  top: 3%;
+  left: 67%;
+}
+
+app-lost {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  transform: rotate(90deg);
+}
+
+app-side {
+  position: absolute;
+  top: -1%;
+  left: 3%;
+  width: 140px;
+}
+
+app-use {
+  position: absolute;
+  top: 25%;
+  left: 30%;
+}
+
+app-gx {
+  position: absolute;
+  top: 0;
+  left: 34%;
+}
+
+app-count {
+  position: absolute;
+  top: -2%;
+  right: 2%;
+}

@@ -1,7 +1,7 @@
 <!-- ベンチ start -->
-<div class="bench_card">
+<div class="bench_box">
   <ng-container *ngFor="let b of bench;index as i">
-      <app-card
+      <app-card class="bench_card"
         [card]="b"
         [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
         (click)="onClick($event, i);"
