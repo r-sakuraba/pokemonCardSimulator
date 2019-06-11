@@ -119,11 +119,18 @@ export class PokecaServiceService {
   moveOneAToB(placeA: Place, aIndex: number,  placeB: Place, aBenchIndex?: number, bBenchIndex?: number) {
     const a = this.PlaceToVariable(placeA, aBenchIndex);
     const b = this.PlaceToVariable(placeB, bBenchIndex);
-    b.push(...a.splice(aIndex, 1));
     if (placeB === Place.battle || placeB === Place.bench) {
+      const card = a.splice(aIndex, 1)[0];
+      if (card.type === CardType.pokemon) {
+        b.unshift(card);
+      } else {
+        b.push(card);
+      }
       b.sort((prev, next) => {
         return this.typeToSortNumber(prev.type) - this.typeToSortNumber(next.type);
       });
+    } else {
+      b.push(...a.splice(aIndex, 1));
     }
   }
 
