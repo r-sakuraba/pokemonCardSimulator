@@ -1,10 +1,17 @@
 <!-- バトル場 start -->
 <div class="battle_field">
-  <ng-container *ngFor="let b of service.battle;index as i">
-    <app-card class="battle_card"
+  <ng-container *ngFor="let b of notEnergy;index as i">
+    <app-card class="battle_card" [ngClass]="getClassType(b.type)" [ngStyle]=""
       [card]="b"
       [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
       (click)="onClick($event, i);"
+    ></app-card>
+  </ng-container>
+  <ng-container *ngFor="let b of energy;index as i">
+    <app-card class="battle_card" [ngClass]="getClassType(b.type)" [ngStyle]="{ 'top': 10 + i * 15 + '%'}"
+      [card]="b"
+      [selected]="isSelectedPlace && (this.selectedCard.index === notEnergy.length + i || this.selectedCard.index === undefined)"
+      (click)="onClick($event, notEnergy.length + i);"
     ></app-card>
   </ng-container>
 </div>

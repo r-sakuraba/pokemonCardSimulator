@@ -5,6 +5,13 @@ export interface Card {
   showFront: boolean;
   frontImg?: string;
   backImg?: string;
+  type: CardType;
+}
+
+export enum CardType {
+  pokemon = 'P',
+  trainers = 'T',
+  energy = 'E',
 }
 
 enum PokemonStatus {
