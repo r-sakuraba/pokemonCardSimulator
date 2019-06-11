@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Card } from './card/card.component';
+import { Card, CardType } from './card/card.component';
 import { HttpClient } from '@angular/common/http';
 import { Place } from './field/field.component';
 
@@ -51,6 +51,8 @@ export class PokecaServiceService {
       data.forEach( _ => {
         for(let j = 0; j < _.num; j++){
           this.deck[index].frontImg = _.img;
+          const jpgString = _.img.split('/');
+          this.deck[index].type = jpgString[jpgString.length - 1].split('_')[1] as CardType;
           index++;
         }
       });
@@ -107,12 +109,33 @@ export class PokecaServiceService {
     const a = this.PlaceToVariable(placeA, aBenchIndex);
     const b = this.PlaceToVariable(placeB, bBenchIndex);
     b.push(...a.splice(0, a.length));
+    if (placeB === Place.battle || placeB === Place.bench) {
+      b.sort((prev, next) => {
+        return this.typeToSortNumber(prev.type) - this.typeToSortNumber(next.type);
+      });
+    }
   }
 
   moveOneAToB(placeA: Place, aIndex: number,  placeB: Place, aBenchIndex?: number, bBenchIndex?: number) {
     const a = this.PlaceToVariable(placeA, aBenchIndex);
     const b = this.PlaceToVariable(placeB, bBenchIndex);
     b.push(...a.splice(aIndex, 1));
+    if (placeB === Place.battle || placeB === Place.bench) {
+      b.sort((prev, next) => {
+        return this.typeToSortNumber(prev.type) - this.typeToSortNumber(next.type);
+      });
+    }
+  }
+
+  private typeToSortNumber(type: CardType): number {
+    switch (type) {
+      case CardType.pokemon:
+        return 1;
+      case CardType.trainers:
+        return 2;
+      case CardType.energy:
+        return 3;
+    }
   }
   //--------------
 
