@@ -1,8 +1,8 @@
 <h3>確認：</h3>
 <div [ngStyle]="{ display: 'flex' }">
-  <ng-container *ngFor="let s of service.stash;index as i">
+  <ng-container *ngFor="let s of stash;index as i">
     <app-card
-      [card]="s"
+      [card]="s.card"
       [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
       (click)="onClick($event, i);"
     ></app-card>

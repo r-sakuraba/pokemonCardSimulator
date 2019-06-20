@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Card, CardType } from './card/card.component';
 import { HttpClient } from '@angular/common/http';
 import { Place } from './field/field.component';
+import { StashCard } from './stash/stash.component';
 
 const shuffleAlgo = ([...arr]) => {
   let m = arr.length;
@@ -32,6 +33,10 @@ export class PokecaServiceService {
   static shuffle(cardArray: Card[]): Card[] {
     cardArray = shuffleAlgo(cardArray);
     return cardArray;
+  }
+
+  get stashCardList(): StashCard[] {
+    return this.stash.map(_ => { return { target: Place.stash, card: _ } });
   }
 
   constructor(private http: HttpClient) {}
