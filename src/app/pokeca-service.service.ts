@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Card, CardType } from './card/card.component';
 import { HttpClient } from '@angular/common/http';
 import { Place } from './field/field.component';
+import { StashCard } from './stash/stash.component';
 
 const shuffleAlgo = ([...arr]) => {
   let m = arr.length;
@@ -32,6 +33,10 @@ export class PokecaServiceService {
   static shuffle(cardArray: Card[]): Card[] {
     cardArray = shuffleAlgo(cardArray);
     return cardArray;
+  }
+
+  get stashCardList(): StashCard[] {
+    return this.stash.map(_ => { return { target: Place.stash, card: _ } });
   }
 
   constructor(private http: HttpClient) {}
@@ -119,11 +124,18 @@ export class PokecaServiceService {
   moveOneAToB(placeA: Place, aIndex: number,  placeB: Place, aBenchIndex?: number, bBenchIndex?: number) {
     const a = this.PlaceToVariable(placeA, aBenchIndex);
     const b = this.PlaceToVariable(placeB, bBenchIndex);
-    b.push(...a.splice(aIndex, 1));
     if (placeB === Place.battle || placeB === Place.bench) {
+      const card = a.splice(aIndex, 1)[0];
+      if (card.type === CardType.pokemon) {
+        b.unshift(card);
+      } else {
+        b.push(card);
+      }
       b.sort((prev, next) => {
         return this.typeToSortNumber(prev.type) - this.typeToSortNumber(next.type);
       });
+    } else {
+      b.push(...a.splice(aIndex, 1));
     }
   }
 
