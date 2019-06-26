@@ -1,11 +1,18 @@
 <!-- ベンチ start -->
 <div class="bench_box">
-  <ng-container *ngFor="let b of bench;index as i">
-      <app-card class="bench_card"
-        [card]="b"
-        [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
-        (click)="onClick($event, i);"
-      ></app-card>
-    </ng-container>
+  <ng-container *ngFor="let b of notPokemon;index as i">
+    <app-card class="bench_card" [ngClass]="getClassType(b.type)" [ngStyle]="{ 'top': -5 + i * -7 + '%'}"
+      [card]="b"
+      [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
+      (click)="onClick($event, i);"
+    ></app-card>
+  </ng-container>
+  <ng-container *ngFor="let b of pokemon;index as i">
+    <app-card class="bench_card" [ngClass]="getClassType(b.type)" [ngStyle]=""
+      [card]="b"
+      [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
+      (click)="onClick($event, i);"
+    ></app-card>
+  </ng-container>
 </div>
 <!-- ベンチ end -->
