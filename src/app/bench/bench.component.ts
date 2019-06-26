@@ -24,11 +24,11 @@ export class BenchComponent implements OnInit {
   }
 
   get notPokemon() {
-    return this.service.bench.filter(_ => _.type !== CardType.pokemon);
+    return this.service.bench[this.benchIndex].filter(_ => _.type !== CardType.pokemon);
   }
 
   get pokemon() {
-    return this.service.bench.filter(_ => _.type === CardType.pokemon);
+    return this.service.bench[this.benchIndex].filter(_ => _.type === CardType.pokemon);
   }
 
   constructor(private service: PokecaServiceService) {}
