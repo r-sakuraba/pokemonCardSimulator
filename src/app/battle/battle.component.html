@@ -1,5 +1,12 @@
 <!-- バトル場 start -->
 <input [(ngModel)]="battle_damage" type="number" step="10" class="battle_damage">
+<select class="battle_status">
+  <option value="状態異常">状態異常</option>
+  <option value="ねむり">ねむり</option>
+  <option value="こんらん">こんらん</option>
+  <option value="まひ">まひ</option>
+  <option value="やけど">やけど</option>
+</select>
 <div class="battle_field">
   <ng-container *ngFor="let b of notEnergy;index as i">
     <app-card class="battle_card" [ngClass]="getClassType(b.type)" [ngStyle]=""
