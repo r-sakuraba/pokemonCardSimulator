@@ -9,6 +9,15 @@
   height: 170px;
 }
 
+.battle_damage {
+  padding-left: 10px;
+  position: absolute;
+  top: -15%;
+  left: 26%;
+  width: 35%;
+  font-size: 18px;
+}
+
 .battle_card {
   &.battle_card--pokemon {
     z-index: 5;
