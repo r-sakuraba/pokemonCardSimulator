@@ -5,7 +5,20 @@
       [card]="s"
       [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
       (click)="onClick($event, i);"
+      [contextMenu]="side" [contextMenuSubject]="i"
     ></app-card>
   </ng-container>
 </div>
 <!-- サイド end -->
+
+<context-menu #side>
+    <ng-template contextMenuItem let-item (execute)="shuffle()">
+      シャッフル
+    </ng-template>
+    <ng-template contextMenuItem let-item (execute)="turnOver($event.item)">
+      裏返す
+    </ng-template>
+    <ng-template contextMenuItem let-item (execute)="sideToStash()">
+      すべて見る
+    </ng-template>
+  </context-menu>

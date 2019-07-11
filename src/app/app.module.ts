@@ -22,17 +22,36 @@ import { StashComponent } from './stash/stash.component';
 import { CountComponent } from './count/count.component';
 import { BenchFieldComponent } from './bench-field/bench-field.component';
 import { WindowRef } from './window-ref.service';
+import { ContextMenuModule } from 'ngx-contextmenu';
 
 const routes: Routes = [
   { path: 'deck-sample', component: DeckSampleComponent },
   { path: 'field', component: FieldComponent },
-  { path: 'stash', component: StashComponent },
+  { path: 'stash', component: StashComponent }
 ];
 
 @NgModule({
-  declarations: [AppComponent, DeckSampleComponent, CardComponent, FieldComponent, DeckComponent, HandComponent, StadiumComponent, BenchComponent, BattleComponent, SideComponent, GxComponent, LostComponent, TrashComponent, UseComponent, StashComponent, CountComponent, BenchFieldComponent],
-  imports: [BrowserModule, RouterModule.forRoot(routes), FormsModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    DeckSampleComponent,
+    CardComponent,
+    FieldComponent,
+    DeckComponent,
+    HandComponent,
+    StadiumComponent,
+    BenchComponent,
+    BattleComponent,
+    SideComponent,
+    GxComponent,
+    LostComponent,
+    TrashComponent,
+    UseComponent,
+    StashComponent,
+    CountComponent,
+    BenchFieldComponent
+  ],
+  imports: [BrowserModule, RouterModule.forRoot(routes), FormsModule, HttpClientModule, ContextMenuModule.forRoot()],
   providers: [WindowRef],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
