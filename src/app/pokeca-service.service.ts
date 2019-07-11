@@ -131,9 +131,20 @@ export class PokecaServiceService {
     this.stash = cards;
   }
 
+  /**
+   * 山札の上からN枚を取得(deck to stash)
+   * num: 上から何枚
+   */
+  trashToStash(num: number) {
+    const cards = this.trash.splice(0, num);
+    cards.forEach(_ => _.showFront = true);
+    this.stash = cards;
+  }
+
   PlaceToVariable(place: Place, benchIndex?: number) {
     switch(place) {
       case Place.deck:
+      case Place.deckUnder:
         return this.deck;
       case Place.battle:
         return this.battle;
@@ -176,8 +187,12 @@ export class PokecaServiceService {
   moveAToB(placeA: Place, placeB: Place, aBenchIndex?: number, bBenchIndex?: number) {
     const a = this.PlaceToVariable(placeA, aBenchIndex);
     const b = this.PlaceToVariable(placeB, bBenchIndex);
-    const cards = a.splice(0, a.length).map(_ => Object.assign(_, { showFront: this.PlaceToShowFront(placeB)}));
-    b.push(...cards);
+    const cards = a.splice(0, a.length).map(_ => Object.assign(_, { showFront: this.PlaceToShowFront(placeB) }));
+    if (placeB === Place.deck) {
+      b.unshift(...cards);
+    } else {
+      b.push(...cards);
+    }
     if (placeB === Place.battle || placeB === Place.bench) {
       b.sort((prev, next) => {
         return this.typeToSortNumber(prev.type) - this.typeToSortNumber(next.type);
@@ -199,7 +214,11 @@ export class PokecaServiceService {
         return this.typeToSortNumber(prev.type) - this.typeToSortNumber(next.type);
       });
     } else {
-      b.push(card);
+      if (placeB === Place.deck) {
+        b.unshift(card);
+      } else {
+        b.push(card);
+      }
     }
   }
 

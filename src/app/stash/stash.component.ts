@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { PokecaServiceService } from '../pokeca-service.service';
 import { SelectedCard, Place } from '../field/field.component';
 import { WindowRef } from '../window-ref.service';
 import { Card } from '../card/card.component';
+import { ContextMenuComponent } from 'ngx-contextmenu';
 
 export interface StashCard {
   target: Place;
@@ -14,9 +15,12 @@ export interface StashCard {
   styleUrls: ['./stash.component.scss']
 })
 export class StashComponent implements OnInit {
+  readonly Place = Place;
 
-  selectedCard: SelectedCard = {};
+  @ViewChild('stashMenu', { static: false }) public stashMenu: ContextMenuComponent;
+
   @Output() onClickStash = new EventEmitter<number>();
+  selectedCard: SelectedCard = {};
   nativeWindow: any;
   stash: StashCard[];
 
@@ -48,4 +52,9 @@ export class StashComponent implements OnInit {
     this.changeDetectorRef.detectChanges();
   }
 
+  stashTo(place: Place, index: number) {
+    this.stash[index].target = place;
+    localStorage.setItem('pokeca', JSON.stringify(this.stash));
+    this.selectedCard = {};
+  }
 }

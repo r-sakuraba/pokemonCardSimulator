@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 
 export enum Place {
   deck = 'deck',
+  deckUnder = 'deckUnder',
   battle = 'battle',
   bench = 'bench',
   trash = 'trash',
@@ -47,23 +48,20 @@ export class FieldComponent implements OnInit {
 
   onClick(clickPlace: Place, index?: number, benchIndex?: number) {
     console.log(clickPlace, index, benchIndex);
-    switch (this.selectedCard.place) {
-      case clickPlace:
-        console.log('select cancel');
-        this.selectedCard = {};
-        break;
-      case undefined:
-        console.log(clickPlace, ' select');
-        this.selectedCard = { place: clickPlace, index, benchIndex };
-        break;
-      default:
-        console.log(this.selectedCard, ' to ', clickPlace);
-        if (this.selectedCard.index === undefined) {
-          this.service.moveAToB(this.selectedCard.place, clickPlace, this.selectedCard.benchIndex, benchIndex);
-        } else {
-          this.service.moveOneAToB(this.selectedCard.place, this.selectedCard.index,  clickPlace, this.selectedCard.benchIndex, benchIndex);
-        }
-        this.selectedCard = {};
+    if (this.selectedCard.place === clickPlace && this.selectedCard.benchIndex === benchIndex) {
+      console.log('select cancel');
+      this.selectedCard = {};
+    } else if (this.selectedCard.place === undefined) {
+      console.log(clickPlace, ' select');
+      this.selectedCard = { place: clickPlace, index, benchIndex };
+    } else {
+      console.log(this.selectedCard, ' to ', clickPlace);
+      if (this.selectedCard.index === undefined) {
+        this.service.moveAToB(this.selectedCard.place, clickPlace, this.selectedCard.benchIndex, benchIndex);
+      } else {
+        this.service.moveOneAToB(this.selectedCard.place, this.selectedCard.index,  clickPlace, this.selectedCard.benchIndex, benchIndex);
+      }
+      this.selectedCard = {};
     }
   }
 

@@ -1,11 +1,36 @@
 <h3>確認：</h3>
 <div [ngStyle]="{ display: 'flex' }">
-  <ng-container *ngFor="let s of stash;index as i">
+  <ng-container *ngFor="let s of stash; index as i">
     <app-card
       [card]="s.card"
       [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
-      (click)="onClick($event, i);"
+      (click)="onClick($event, i)"
+      [contextMenu]="stashMenu"
+      [contextMenuSubject]="i"
     ></app-card>
     <p>&nbsp;</p>
   </ng-container>
 </div>
+
+<context-menu #stashMenu>
+  <ng-template contextMenuItem let-item (execute)="stashTo(Place.hand, $event.item)">
+    手札へ
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="stashTo(Place.trash, $event.item)">
+    トラッシュへ
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="stashTo(Place.side, $event.item)">
+    サイドへ
+  </ng-template>
+  <ng-template contextMenuItem [subMenu]="stashDeck">
+    山札へ
+  </ng-template>
+  <context-menu #stashDeck>
+    <ng-template contextMenuItem (execute)="stashTo(Place.deck, $event.item)">
+      上へ
+    </ng-template>
+    <ng-template contextMenuItem (execute)="stashTo(Place.deckUnder, $event.item)">
+      下へ
+    </ng-template>
+  </context-menu>
+</context-menu>

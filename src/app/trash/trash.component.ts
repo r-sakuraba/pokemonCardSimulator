@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { PokecaServiceService } from '../pokeca-service.service';
 import { SelectedCard, Place } from '../field/field.component';
+import { ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
   selector: 'app-trash',
@@ -8,6 +9,7 @@ import { SelectedCard, Place } from '../field/field.component';
   styleUrls: ['./trash.component.scss']
 })
 export class TrashComponent implements OnInit {
+  @ViewChild('trash', { static: false }) public trash: ContextMenuComponent;
 
   @Input() selectedCard: SelectedCard;
   @Output() onClickTrash = new EventEmitter<number>();
@@ -26,4 +28,12 @@ export class TrashComponent implements OnInit {
     this.onClickTrash.emit(index);
   }
 
+  /**
+   * stashに移動
+   * @param stash
+   */
+  trashToStash() {
+    this.service.trashToStash(this.service.trash.length);
+    localStorage.setItem('pokeca', JSON.stringify(this.service.stashCardList));
+  }
 }
