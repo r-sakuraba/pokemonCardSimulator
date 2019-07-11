@@ -19,6 +19,7 @@ export class DeckComponent implements OnInit {
   inputUnderN: number;
   nativeWindow: any;
   searchCount: number;
+  drawCount: number;
 
   get deckTop(): Card {
     return Object.assign({}, this.service.deck[0], {showFront: false});
@@ -46,9 +47,11 @@ export class DeckComponent implements OnInit {
   /**
    * ドロー処理
    */
-  draw() {
+  draw(drawCount: number) {
     // event.stopPropagation();
-    this.service.deckTopToHand();
+    for (let index = 0; index < drawCount; index++) {
+      this.service.deckTopToHand();
+    }
     console.log( this.service.deck);
   }
 

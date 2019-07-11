@@ -1,11 +1,20 @@
 <!-- トラッシュ start -->
 <div class="trash_field">
-  <ng-container *ngFor="let t of service.trash;index as i">
-    <app-card class="trash_card"
+  <ng-container *ngFor="let t of service.trash; index as i">
+    <app-card
+      class="trash_card"
       [card]="t"
       [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
-      (click)="onClick($event, i);"
+      (click)="onClick($event, i)"
+      [contextMenu]="trash"
+      [contextMenuSubject]="i"
     ></app-card>
   </ng-container>
 </div>
 <!-- トラッシュ end -->
+
+<context-menu #trash>
+  <ng-template contextMenuItem let-item (execute)="trashToStash()">
+    すべて見る
+  </ng-template>
+</context-menu>

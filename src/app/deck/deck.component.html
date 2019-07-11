@@ -15,7 +15,7 @@
 </div>
 
 <context-menu #deck>
-  <ng-template contextMenuItem let-item (execute)="draw()">
+  <ng-template contextMenuItem [subMenu]="drawMenu">
     ドロー
   </ng-template>
   <ng-template contextMenuItem let-item (execute)="shuffle()">
@@ -30,6 +30,18 @@
   <ng-template contextMenuItem let-item (execute)="deckToSide()">
     サイド6枚置き
   </ng-template>
+  <context-menu #drawMenu>
+    <ng-template contextMenuItem let-item (execute)="draw(1)">
+      1枚
+    </ng-template>
+    <ng-template contextMenuItem (execute)="draw(6)">
+      6枚
+    </ng-template>
+    <ng-template contextMenuItem (execute)="draw(7)">
+      7枚
+    </ng-template>
+    <ng-template contextMenuItem passive="true"> 選択枚数: <input type="text" [(ngModel)]="drawCount" /> <button (click)="draw(drawCount)">OK</button> </ng-template>
+  </context-menu>
   <context-menu #topSearchMenu>
     <ng-template contextMenuItem let-item (execute)="search(1)">
       1枚
