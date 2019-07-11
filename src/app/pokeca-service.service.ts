@@ -48,6 +48,7 @@ export class PokecaServiceService {
         Id: i,
         frontImg:
           'https://www.pokemon-card.com/assets/images/card_images/large/SM4p/035679_T_RIRIE.jpg',
+        showFront: false
       } as Card;
     });
     this.http.get('/assets/deck/deck.dat').subscribe((data: {img: string, num: number}[]) => {
@@ -70,11 +71,25 @@ export class PokecaServiceService {
     this.deck = PokecaServiceService.shuffle(this.deck);
   }
 
+  shuffleSide() {
+    this.side = PokecaServiceService.shuffle(this.side);
+  }
+
+  /**
+   * サイド裏返し処理
+   * @param index 裏返すインデックス
+   */
+  turnOverSide(index: number) {
+    this.side[index].showFront = !this.side[index].showFront;
+  }
+
   /**
    *  山札の一番上を手札に加える処理
    */
   deckTopToHand() {
-    this.hand.push(this.deck.shift());
+    const card = this.deck.shift();
+    card.showFront = true;
+    this.hand.push(card);
   }
 
   /**
@@ -82,7 +97,38 @@ export class PokecaServiceService {
    * num: 上から何枚
    */
   deckToStash(num: number) {
-    this.stash = this.deck.splice(0, num);
+    const cards = this.deck.splice(0, num);
+    cards.forEach(_ => _.showFront = true);
+    this.stash = cards;
+  }
+
+  /**
+   * 山札の下からN枚を取得(deck to stash)
+   * num: 下から何枚
+   */
+  deckUnderToStash(num: number) {
+    const cards = this.deck.splice(-num, num);
+    cards.forEach(_ => _.showFront = true);
+    this.stash = cards;
+  }
+
+  /**
+   * 山札の上からN枚を取得(deck to side)
+   * num: 上から何枚
+   */
+  deckToSide(num: number) {
+    this.side = this.deck.splice(0, num);
+    this.side.forEach(_ =>  _.showFront = false);
+  }
+
+  /**
+   * 山札の上からN枚を取得(deck to stash)
+   * num: 上から何枚
+   */
+  SideToStash(num: number) {
+    const cards = this.side.splice(0, num);
+    cards.forEach(_ => _.showFront = true);
+    this.stash = cards;
   }
 
   PlaceToVariable(place: Place, benchIndex?: number) {
@@ -110,10 +156,28 @@ export class PokecaServiceService {
     }
   }
 
+  PlaceToShowFront(place: Place, benchIndex?: number): boolean {
+    switch(place) {
+      case Place.deck:
+      case Place.side:
+        return false;
+      case Place.battle:
+      case Place.bench:
+      case Place.trash:
+      case Place.hand:
+      case Place.stadium:
+      case Place.use:
+      case Place.lost:
+      case Place.stash:
+        return true;
+    }
+  }
+
   moveAToB(placeA: Place, placeB: Place, aBenchIndex?: number, bBenchIndex?: number) {
     const a = this.PlaceToVariable(placeA, aBenchIndex);
     const b = this.PlaceToVariable(placeB, bBenchIndex);
-    b.push(...a.splice(0, a.length));
+    const cards = a.splice(0, a.length).map(_ => Object.assign(_, { showFront: this.PlaceToShowFront(placeB)}));
+    b.push(...cards);
     if (placeB === Place.battle || placeB === Place.bench) {
       b.sort((prev, next) => {
         return this.typeToSortNumber(prev.type) - this.typeToSortNumber(next.type);
@@ -124,8 +188,8 @@ export class PokecaServiceService {
   moveOneAToB(placeA: Place, aIndex: number,  placeB: Place, aBenchIndex?: number, bBenchIndex?: number) {
     const a = this.PlaceToVariable(placeA, aBenchIndex);
     const b = this.PlaceToVariable(placeB, bBenchIndex);
+    const card = Object.assign(a.splice(aIndex, 1)[0], { showFront: this.PlaceToShowFront(placeB)});
     if (placeB === Place.battle || placeB === Place.bench) {
-      const card = a.splice(aIndex, 1)[0];
       if (card.type === CardType.pokemon) {
         b.unshift(card);
       } else {
@@ -135,7 +199,7 @@ export class PokecaServiceService {
         return this.typeToSortNumber(prev.type) - this.typeToSortNumber(next.type);
       });
     } else {
-      b.push(...a.splice(aIndex, 1));
+      b.push(card);
     }
   }
 
