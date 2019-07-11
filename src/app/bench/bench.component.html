@@ -1,7 +1,7 @@
 <!-- ベンチ start -->
 <div class="bench_box">
   <ng-container *ngFor="let b of notPokemon;index as i">
-    <input type="number" value="0" step="10" class="bench_damage">
+    <input [(ngModel)]="bench_damage" type="number" step="10" class="bench_damage">
     <app-card class="bench_card" [ngClass]="getClassType(b.type)" [ngStyle]="{ 'top': -5 + i * -9 + '%' , 'z-index': 20 - i}"
       [card]="b"
       [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
@@ -9,7 +9,7 @@
     ></app-card>
   </ng-container>
   <ng-container *ngFor="let b of pokemon;index as i">
-    <input type="number" value="0" step="10" class="bench_damage">
+    <input [(ngModel)]="bench_damage" type="number" step="10" class="bench_damage">
     <app-card class="bench_card" [ngClass]="getClassType(b.type)" [ngStyle]="{ 'top': 15 + i * -4 + '%' , 'right': 13 + -i * 5 + '%' , 'z-index': 50 - i}"
       [card]="b"
       [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"

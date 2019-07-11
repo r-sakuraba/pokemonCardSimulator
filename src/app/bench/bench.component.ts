@@ -16,6 +16,8 @@ export class BenchComponent implements OnInit {
   @Input() selectedCard: SelectedCard;
   @Output() onClickBench = new EventEmitter<number>();
 
+  bench_damage: number = 0;
+
   get isSelectedPlace() {
     return (
       this.selectedCard.place === Place.bench &&

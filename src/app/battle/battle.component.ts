@@ -10,6 +10,8 @@ import { CardType } from '../card/card.component';
 })
 export class BattleComponent implements OnInit {
 
+  battle_damage: number = 0;
+
   readonly cardType = CardType;
 
   @Input() selectedCard: SelectedCard;
