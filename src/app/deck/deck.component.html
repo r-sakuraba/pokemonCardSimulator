@@ -1,11 +1,11 @@
-<app-card *ngIf="service.deck.length"
+<app-card
+  *ngIf="service.deck.length"
   [card]="deckTop"
   [selected]="isSelectedPlace && (this.selectedCard.index === 0 || this.selectedCard.index === undefined)"
+  [contextMenu]="deck" [contextMenuSubject]="item"
 ></app-card>
 <div *ngIf="!service.deck.length"></div>
-<button class="deck_play" (click)="draw($event)">ドロー</button>
-<button class="deck_play" (click)="shuffle($event)">シャッフル</button>
-<button class="deck_play" (click)="search($event)">サーチ</button> <!-- クリック時に 検索用別ウィンドウを開く想定 -->
+<!-- クリック時に 検索用別ウィンドウを開く想定 -->
 <div class="deck_search" style="display: none;">
   <p>上からn枚：</p>
   <input type="number" [(ngModel)]="inputTopN" />
@@ -13,3 +13,54 @@
   &nbsp;
   <button (click)="onClickShowDeck()">山札すべて表示</button>
 </div>
+
+<context-menu #deck>
+  <ng-template contextMenuItem let-item (execute)="draw()">
+    ドロー
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="shuffle()">
+    シャッフル
+  </ng-template>
+  <ng-template contextMenuItem [subMenu]="topSearchMenu">
+    上からサーチ
+  </ng-template>
+  <ng-template contextMenuItem [subMenu]="underSearchMenu">
+    下からサーチ
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="deckToSide()">
+    サイド6枚置き
+  </ng-template>
+  <context-menu #topSearchMenu>
+    <ng-template contextMenuItem let-item (execute)="search(1)">
+      1枚
+    </ng-template>
+    <ng-template contextMenuItem (execute)="search(2)">
+      2枚
+    </ng-template>
+    <ng-template contextMenuItem (execute)="search(5)">
+      5枚
+    </ng-template>
+    <ng-template contextMenuItem (execute)="search(7)">
+      7枚
+    </ng-template>
+    <ng-template contextMenuItem (execute)="searchDeck()">
+      山札すべて
+    </ng-template>
+    <ng-template contextMenuItem passive="true"> 選択枚数: <input type="text" [(ngModel)]="searchCount" /> <button (click)="search(searchCount)">OK</button> </ng-template>
+  </context-menu>
+  <context-menu #underSearchMenu>
+      <ng-template contextMenuItem let-item (execute)="underSearch(1)">
+        1枚
+      </ng-template>
+      <ng-template contextMenuItem (execute)="underSearch(2)">
+        2枚
+      </ng-template>
+      <ng-template contextMenuItem (execute)="underSearch(5)">
+        5枚
+      </ng-template>
+      <ng-template contextMenuItem (execute)="underSearch(7)">
+        7枚
+      </ng-template>
+      <ng-template contextMenuItem passive="true"> 選択枚数: <input type="text" [(ngModel)]="searchCount" /> <button (click)="underSearch(searchCount)">OK</button> </ng-template>
+    </context-menu>
+</context-menu>
