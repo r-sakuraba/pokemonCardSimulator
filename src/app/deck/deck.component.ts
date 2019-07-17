@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Card } from '../card/card.component';
 import { PokecaServiceService } from '../pokeca-service.service';
 import { SelectedCard, Place } from '../field/field.component';
@@ -14,6 +14,7 @@ export class DeckComponent implements OnInit {
   @ViewChild('deck', { static: false }) public deck: ContextMenuComponent;
 
   @Input() selectedCard: SelectedCard;
+  @Output() clickContextMenuEvent = new EventEmitter<void>();
 
   inputTopN: number;
   inputUnderN: number;
@@ -42,6 +43,7 @@ export class DeckComponent implements OnInit {
    */
   shuffle() {
     this.service.shuffleDeck();
+    this.clickContextMenuEvent.emit();
   }
 
   /**
@@ -53,6 +55,7 @@ export class DeckComponent implements OnInit {
       this.service.deckTopToHand();
     }
     console.log( this.service.deck);
+    this.clickContextMenuEvent.emit();
   }
 
   /**
@@ -64,6 +67,7 @@ export class DeckComponent implements OnInit {
     this.inputTopN = count;
     this.onClickShowTopN();
     localStorage.setItem('pokeca', JSON.stringify(this.service.stashCardList));
+    this.clickContextMenuEvent.emit();
   }
 
   /**
@@ -74,6 +78,7 @@ export class DeckComponent implements OnInit {
     console.log('-- search --');
     this.onClickShowDeck();
     localStorage.setItem('pokeca', JSON.stringify(this.service.stashCardList));
+    this.clickContextMenuEvent.emit();
   }
 
   /**
@@ -85,6 +90,7 @@ export class DeckComponent implements OnInit {
     this.inputUnderN = count;
     this.onClickShowUnderN();
     localStorage.setItem('pokeca', JSON.stringify(this.service.stashCardList));
+    this.clickContextMenuEvent.emit();
   }
 
   /**

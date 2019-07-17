@@ -13,6 +13,7 @@ export class TrashComponent implements OnInit {
 
   @Input() selectedCard: SelectedCard;
   @Output() onClickTrash = new EventEmitter<number>();
+  @Output() clickContextMenuEvent = new EventEmitter<void>();
 
   get isSelectedPlace() {
     return this.selectedCard.place === Place.trash;
@@ -35,5 +36,6 @@ export class TrashComponent implements OnInit {
   trashToStash() {
     this.service.trashToStash(this.service.trash.length);
     localStorage.setItem('pokeca', JSON.stringify(this.service.stashCardList));
+    this.clickContextMenuEvent.emit();
   }
 }

@@ -13,6 +13,7 @@ export class SideComponent implements OnInit {
 
   @Input() selectedCard: SelectedCard;
   @Output() onClickSide = new EventEmitter<number>();
+  @Output() clickContextMenuEvent = new EventEmitter<void>();
 
   get isSelectedPlace() {
     return this.selectedCard.place === Place.side;
@@ -33,6 +34,7 @@ export class SideComponent implements OnInit {
    */
   shuffle() {
     this.service.shuffleSide();
+    this.clickContextMenuEvent.emit();
   }
 
   /**
@@ -41,6 +43,7 @@ export class SideComponent implements OnInit {
    */
   turnOver(index: number) {
     this.service.turnOverSide(index);
+    this.clickContextMenuEvent.emit();
   }
 
   /**
@@ -50,5 +53,6 @@ export class SideComponent implements OnInit {
   sideToStash() {
     this.service.SideToStash(this.service.side.length);
     localStorage.setItem('pokeca', JSON.stringify(this.service.stashCardList));
+    this.clickContextMenuEvent.emit();
   }
 }
