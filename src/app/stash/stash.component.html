@@ -33,4 +33,29 @@
       下へ
     </ng-template>
   </context-menu>
+  <ng-template contextMenuItem [subMenu]="stashAll">
+    すべて
+  </ng-template>
+  <context-menu #stashAll>
+    <ng-template contextMenuItem let-item (execute)="stashAllTo(Place.hand)">
+      手札へ
+    </ng-template>
+    <ng-template contextMenuItem let-item (execute)="stashAllTo(Place.trash)">
+      トラッシュへ
+    </ng-template>
+    <ng-template contextMenuItem let-item (execute)="stashAllTo(Place.side)">
+      サイドへ
+    </ng-template>
+    <ng-template contextMenuItem [subMenu]="stashAllDeck">
+      山札へ
+    </ng-template>
+    <context-menu #stashAllDeck>
+      <ng-template contextMenuItem (execute)="stashAllTo(Place.deck)">
+        上へ
+      </ng-template>
+      <ng-template contextMenuItem (execute)="stashAllTo(Place.deckUnder)">
+        下へ
+      </ng-template>
+    </context-menu>
+  </context-menu>
 </context-menu>

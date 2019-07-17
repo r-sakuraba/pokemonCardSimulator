@@ -57,4 +57,12 @@ export class StashComponent implements OnInit {
     localStorage.setItem('pokeca', JSON.stringify(this.stash));
     this.selectedCard = {};
   }
+
+  stashAllTo(place: Place) {
+    this.stash.forEach(_ => {
+      _.target = place;
+    });
+    localStorage.setItem('pokeca', JSON.stringify(this.stash));
+    this.selectedCard = {};
+  }
 }

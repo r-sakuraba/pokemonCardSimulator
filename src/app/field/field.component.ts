@@ -77,4 +77,8 @@ export class FieldComponent implements OnInit {
     this.changeDetectorRef.detectChanges();
     localStorage.setItem('pokeca', JSON.stringify(stash.filter(_ => _.target === Place.stash)));
   }
+
+  clearSelectedCard() {
+    this.selectedCard = {};
+  }
 }
