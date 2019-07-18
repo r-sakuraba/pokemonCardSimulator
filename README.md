@@ -1,27 +1,68 @@
-# PokemonCardSimulator
+## ポケカシミュレーター
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
+### 事前ツール準備
+- Node,npmの準備
+    - Windowsの場合（Nodist）→ https://qiita.com/satoyan419/items/56e0b5f35912b9374305
+    - Macの場合（元々）→ https://qiita.com/kyosuke5_20/items/c5f68fc9d89b84c0df09
+- gitの準備
+    - windowsの場合 → https://qiita.com/toshi-click/items/dcf3dd48fdc74c91b409
+    - macの場合 → https://tracpath.com/bootcamp/git-install-to-mac.html
 
-## Development server
+### 環境準備
+- モジュールのクローン
+    - ネットワーク上にある、シミュレーターのデータを拾ってきます。
+    - cd [保存したいディレクトリ]
+    - git clone https://github.com/r-sakuraba/pokemonCardSimulator.git
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- npm パッケージインストール
+    - シミュレータの中で使っている細かな物を取得します。
+    - cd [シミュレーターのルートディレクトリ] //直下にpackage.jsonが置いてあるファイルです。
+    - npm i //結構時間がかかる場合があります、スペック次第。具後課内場合はNode,npmの準備を再度参照
 
-## Code scaffolding
+### 起動
+- デッキ作成
+    - 公式サイトのデッキビルドツールを使用してください。必要なのはデッキコードです。
+    - https://www.pokemon-card.com/deck
+    - ex ) FkkbvV-DGr8jr-kVwf5w //これは牧さんの耐久型レシリザです。20190524
+- シミュレーター起動
+    -./start.sh FkkbvV-DGr8jr-kVwf5w（デッキコード）
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### 各エリア仕様
+- 全体仕様
+    - カードをクリックすると、カードが選択状態となります。次にクリックした場所にカードが移動する形になります。
+    - 赤枠で囲われたエリアをクリックすると、エリア内全選択が可能です。（カード以外の空き枠をクリック）
+    - サーチ、トラッシュの確認、サイドの確認を行う場合は別ウィンドウにカードを送って確認する形になっています。
+- 別ウィンドウ
+    - サーチ、トラッシュの確認、サイドの確認を行う場合は別ウィンドウにカードを送って確認する形になっています。
+    - カードをクリックすることで、指定したカードを手札に加えます。
+    - 右クリックでメニューを出せます
+        - 実装中のため完了後記載。
+- デッキ
+    - 右クリックでメニューを出せます。
+        - ドロー：指定した枚数分、デッキの上から手札にカードを加えます。
+        - シャッフル：現在のデッキの中身をランダムにシャッフルします。
+        - 上からサーチ：指定した枚数分、デッキの上から別ウィンドウにカードを送ります。
+        - 下からサーチ：指定した枚数分、デッキの下から別ウィンドウにカードを送ります。
+        - サイドを6枚並べる：デッキの上から、サイドに3枚カードを送ります。
+- 手札
+    - 横幅を超える手札の枚数になった場合、右スクロールで移動出来るようになっています。
+- バトル場
+    - ポケモン、エネルギー、道具をセット出来るようになっています。それぞれ、何が配置されたかは自動で判定する形になっているため、エリア内にクリックで移動させればOKです。
+    - ダメージカウンタ用のinputBox、状態異常選択のプルダウンリストを配置しています。ポケモン移動時に変更される仕様になっていないため、随時変更してください。
+- ベンチ
+    - バトル場と同じなので割愛。
+- 使用エリア
+    - バトル場左下のエリアです。
+    - 使用を宣言する場合、トラッシュに送るカードを見せる場合、サーチで持ってきたカードを見せる場合に使用する想定です。
+- サイド
+    - １枚クリックし、手札をクリックすることでサイドを獲得することが可能です。
+    - 右クリックでメニューを出せます。
+        - サイドを確認する：別ウィンドウにサイドの中身を移動します。
+        - 表にする：選択したサイドカードを表向きにします。
+- トラッシュ
+    - 右クリックでメニューを出せます。
+        - トラッシュを確認する：別ウィンドウにトラッシュの中身を移動します。
+- ロスト
+    - 特筆事項なし
+- スタジアム
+    - 特筆事項なし
