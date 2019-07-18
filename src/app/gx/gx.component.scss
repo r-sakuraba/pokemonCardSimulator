@@ -1,0 +1,19 @@
+.marker {
+  background: url(../../assets/image/gx_marker.jpg);
+  background-size: contain;
+  width: 67px;
+  height: 43px;
+  &.is-inactive {
+    &::before {
+      /* 透過した黒を上から重ねるイメージ */
+      background-color: rgba(0,0,0,0.4);
+      /* 自由に位置指定 */
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: ' ';
+    }
+  }
+}
