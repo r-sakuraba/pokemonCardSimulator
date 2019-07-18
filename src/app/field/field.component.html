@@ -9,5 +9,5 @@
 <app-lost [selectedCard]="selectedCard" (click)="onClick(place.lost);" (onClickLost)="onClick(place.lost, $event);"></app-lost>
 <app-gx (click)="onClickGx();"></app-gx>
 <app-count [deckCount]="service.deck.length" [handCount]="service.hand.length"></app-count>
-<button (click)="clearSelectedCard();">緊急選択解除ボタン</button>
+<button (click)="clearSelectedCard();" class="escape">緊急選択解除ボタン</button>
 <!-- <app-stash [selectedCard]="selectedCard" (click)="onClick(place.stash);" (onClickStash)="onClick(place.stash, $event);"></app-stash> -->

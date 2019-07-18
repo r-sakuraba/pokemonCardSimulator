@@ -1,0 +1,21 @@
+.stash_area {
+  position: absolute;
+  width: 1074px;
+  height: 1600px;
+  background: url(../../assets/image/poke_bg.jpg);
+  background-size: contain;
+}
+
+.stash_box {
+  width: 800px;
+  height: 600px;
+  margin: 50px auto;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+app-card {
+  margin-top: 10px;
+  margin-left: 10px;
+}
