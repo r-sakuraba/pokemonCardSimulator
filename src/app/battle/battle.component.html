@@ -12,7 +12,7 @@
     <app-card class="battle_card" [ngClass]="getClassType(b.type)" [ngStyle]="{ 'z-index': 20 - i }"
       [card]="b"
       [selected]="isSelectedPlace && (this.selectedCard.index === i || this.selectedCard.index === undefined)"
-      (click)="onClick($event, notEnergy.length + i);"
+      (click)="onClick($event, i);"
     ></app-card>
   </ng-container>
   <ng-container *ngFor="let b of energy;index as i">
