@@ -23,7 +23,7 @@
 - デッキ作成
     - 公式サイトのデッキビルドツールを使用してください。必要なのはデッキコードです。
     - https://www.pokemon-card.com/deck
-    - ex ) FkkbvV-DGr8jr-kVwf5w //これは牧さんの耐久型レシリザです。20190524
+    - ex ) FkkbvV-DGr8jr-kVwf5w //耐久型レシリザです。20190524
 - シミュレーター起動
     -./start.sh FkkbvV-DGr8jr-kVwf5w（デッキコード）
 
